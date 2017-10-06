@@ -1,0 +1,65 @@
+// 20171006200425
+// https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=Bremen&destinations=Munich|Hamburg|Hanover|Stuttgart&key=AIzaSyD5itzQ3zqnfTO9qrLQRfvGS3slIHFrokU
+
+{
+  "destination_addresses": [
+    "München, Deutschland",
+    "Hamburg, Deutschland",
+    "Hannover, Deutschland",
+    "Stuttgart, Deutschland"
+  ],
+  "origin_addresses": [
+    "Bremen, Deutschland"
+  ],
+  "rows": [
+    {
+      "elements": [
+        {
+          "distance": {
+            "text": "752 km",
+            "value": 751737
+          },
+          "duration": {
+            "text": "7 Stunden, 9 Minuten",
+            "value": 25739
+          },
+          "status": "OK"
+        },
+        {
+          "distance": {
+            "text": "122 km",
+            "value": 122196
+          },
+          "duration": {
+            "text": "1 Stunde, 25 Minuten",
+            "value": 5078
+          },
+          "status": "OK"
+        },
+        {
+          "distance": {
+            "text": "128 km",
+            "value": 127529
+          },
+          "duration": {
+            "text": "1 Stunde, 28 Minuten",
+            "value": 5259
+          },
+          "status": "OK"
+        },
+        {
+          "distance": {
+            "text": "631 km",
+            "value": 631159
+          },
+          "duration": {
+            "text": "6 Stunden, 11 Minuten",
+            "value": 22283
+          },
+          "status": "OK"
+        }
+      ]
+    }
+  ],
+  "status": "OK"
+}

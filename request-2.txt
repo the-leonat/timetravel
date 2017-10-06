@@ -1,0 +1,61 @@
+// 20171006202404
+// https://maps.googleapis.com/maps/api/distancematrix/json?mode=driving?units=metric&origins=Bremen&destinations=Munich&key=AIzaSyD5itzQ3zqnfTO9qrLQRfvGS3slIHFrokU
+
+{
+  "destination_addresses": [
+    "München, Deutschland"
+  ],
+  "origin_addresses": [
+    "Bremen, Deutschland"
+  ],
+  "rows": [
+    {
+      "elements": [
+        {
+          "distance": {
+            "text": "752 km",
+            "value": 751737
+          },
+          "duration": {
+            "text": "7 Stunden, 9 Minuten",
+            "value": 25739
+          },
+          "status": "OK"
+        }
+      ]
+    }
+  ],
+  "status": "OK"
+}
+
+
+// 20171006202535
+// https://maps.googleapis.com/maps/api/distancematrix/json?mode=transit&units=metric&origins=Bremen&destinations=Munich&key=AIzaSyD5itzQ3zqnfTO9qrLQRfvGS3slIHFrokU
+
+{
+  "destination_addresses": [
+    "München, Deutschland"
+  ],
+  "origin_addresses": [
+    "Bremen, Deutschland"
+  ],
+  "rows": [
+    {
+      "elements": [
+        {
+          "distance": {
+            "text": "943 km",
+            "value": 943433
+          },
+          "duration": {
+            "text": "11 Stunden, 1 Minute",
+            "value": 39660
+          },
+          "status": "OK"
+        }
+      ]
+    }
+  ],
+  "status": "OK"
+}
+
