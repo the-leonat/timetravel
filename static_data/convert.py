@@ -1,4 +1,6 @@
 from operator import itemgetter
+import csv
+import json
 
 inFileString = "worldcitiespop.txt"
 outFileString = "out.txt"
@@ -14,7 +16,11 @@ with open(inFileString, "r") as inStream:
     if(cl[0] == "de" and cl[4] != ""):
       cityList.append(cl)
       
-sortedCityList = sorted(cityList, key=lambda k: int(k[4])) 
+sortedCityList = sorted(cityList, key=lambda k: int(k[4]), reverse=True) 
+
 with open(outFileString, "w") as outStream:
+  index = 0
   for item in sortedCityList:
-    outStream.write(','.join(item))
+    index+=1
+    if(index <= 25):
+      outStream.write(','.join(item))
