@@ -18,7 +18,6 @@ class CityLayer extends Component {
           return
         }
         response.json().then(data => {
-          console.log(data)
           this.setState({
             cities: data,
           }, () => {
@@ -30,7 +29,7 @@ class CityLayer extends Component {
       if (this.state.cities.length===0) return(<span>Loading ...</span>)
       return (
         this.state.cities.map((data) => {
-         return <circle cx={ this.props.projection()([data.Longitude,data.Latitude])[0] } cy={ this.props.projection()([data.Longitude,data.Latitude])[1] } r={ 2 } fill="#000" className="marker" />;
+         return <circle key={data.City} cx={ this.props.projection()([data.Longitude,data.Latitude])[0] } cy={ this.props.projection()([data.Longitude,data.Latitude])[1] } r={ 2 } fill="#000" className="marker" />;
         })
     )
   }
