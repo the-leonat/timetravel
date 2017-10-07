@@ -1,9 +1,45 @@
+// src/components/Cities.js
+
+import React, { Component } from "react"  
+
+class CityLayer extends Component {
+  constructor() {
+    super()
+    this.state = {
+        cities: []
+    }
+  }
+
+ componentDidMount() {
+    fetch("/cities.json")
+      .then(response => {
+        if (response.status !== 200) {
+          console.log(`There was a problem: ${response.status}`)
+          return
+        }
+        response.json().then(data => {
+          console.log(data)
+          this.setState({
+            cities: data,
+          }, () => {
+          })
+        })
+      })
+  }
+  render() {
+      if (this.state.cities.length===0) return(<span>Loading ...</span>)
+      return (
+        this.state.cities.map((data) => {
+         return <circle cx={ this.props.projection()([data.Longitude,data.Latitude])[0] } cy={ this.props.projection()([data.Longitude,data.Latitude])[1] } r={ 2 } fill="#000" className="marker" />;
+        })
+    )
+}
 // src/components/WorldMap.js
 
 import React, { Component } from "react"
 import { geoAlbers, geoMercator, geoPath } from "d3-geo"
 import { feature } from "topojson-client"
-import CityLayer from "components/CityLayer.jsx"
+import Cities from "components/Cities.jsx"
 
 class WorldMap extends Component {
   constructor() {
@@ -11,7 +47,6 @@ class WorldMap extends Component {
     this.state = {
       
     }
-    this.projection=this.projection.bind(this)
   }
   projection() {
     if(this.state.outline === undefined) return geoMercator()
@@ -45,6 +80,20 @@ class WorldMap extends Component {
           })
         })
       })
+    fetch("/cities.json")
+      .then(response => {
+        if (response.status !== 200) {
+          console.log(`There was a problem: ${response.status}`)
+          return
+        }
+        response.json().then(data => {
+          console.log(data)
+          this.setState({
+            cities: data,
+          }, () => {
+          })
+        })
+      })
   }
   render() {
 
@@ -62,7 +111,7 @@ class WorldMap extends Component {
           }
         </g>
         <g className="markers">
-            <CityLayer projection={this.projection} />
+            <Cities cities={this.state.cities} />
         </g>
       </svg>
     )
@@ -70,3 +119,4 @@ class WorldMap extends Component {
 }
 
 export default WorldMap
+export default CityLayer
