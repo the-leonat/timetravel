@@ -10,8 +10,11 @@
     "topojson-client": "^3.0.0"
   },
   "scripts": {
-    "start": "NODE_PATH=src react-scripts start",
-    "build": "NODE_PATH=src react-scripts build",
-    "eject": "NODE_PATH=src react-scripts eject"
+    "start": "cross-env NODE_PATH=src react-scripts start",
+    "build": "cross-env NODE_PATH=src react-scripts build",
+    "eject": "cross-env NODE_PATH=src react-scripts eject"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.5"
   }
 }
