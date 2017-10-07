@@ -2,7 +2,6 @@
 
 import React, { Component } from "react"
 import { geoMercator, geoPath, geoCircle } from "d3-geo"
-import { feature } from "topojson-client"
 import CityLayer from "components/CityLayer.jsx"
 
 class WorldMap extends Component {
@@ -27,11 +26,12 @@ class WorldMap extends Component {
     
     let b = geoPath().bounds(this.state.outline)
     
-    let cLat = (b[0][0] + b[1][0]) / 2
-    let cLong = (b[1][1] + b[0][1]) / 2
+    let cLong = (b[0][0] + b[1][0]) / 2
+    let cLat = (b[1][1] + b[0][1]) / 2
     
+    let zoom  = this.getHeight() * 25 / Math.abs((b[1][1] - b[0][1]))
 
-    return geoMercator().center([cLat, cLong]).scale(2500).translate([this.getWidth() / 2, this.getHeight() / 2])
+    return geoMercator().center([cLong, cLat]).scale(zoom).translate([this.getWidth() / 2, this.getHeight() / 2])
   }
   
   componentDidMount() {

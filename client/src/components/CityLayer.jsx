@@ -25,6 +25,9 @@ class CityLayer extends Component {
         })
       })
   }
+  
+  
+  
   render() {
       if (this.state.cities.length===0) return(<span>Loading ...</span>)
       return (

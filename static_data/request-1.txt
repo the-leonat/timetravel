@@ -16,7 +16,7 @@
       "elements": [
         {
           "distance": {
-            "text": "752 km",
+             "text": "752 km",
             "value": 751737
           },
           "duration": {

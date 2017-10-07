@@ -1,0 +1,227 @@
+[
+ {
+   "Country": "de",
+   "City": "berlin",
+   "AccentCity": "Berlin",
+   "Region": 16,
+   "Population": 3398362,
+   "Latitude": 52.516667,
+   "Longitude": 13.4
+ },
+ {
+   "Country": "de",
+   "City": "hamburg",
+   "AccentCity": "Hamburg",
+   "Region": 4,
+   "Population": 1733846,
+   "Latitude": 53.55,
+   "Longitude": 10
+ },
+ {
+   "Country": "de",
+   "City": "munich",
+   "AccentCity": "Munich",
+   "Region": 2,
+   "Population": 1246133,
+   "Latitude": 48.15,
+   "Longitude": 11.5833
+ },
+ {
+   "Country": "de",
+   "City": "cologne",
+   "AccentCity": "Cologne",
+   "Region": 7,
+   "Population": 968823,
+   "Latitude": 50.933333,
+   "Longitude": 6.95
+ },
+ {
+   "Country": "de",
+   "City": "frankfurt",
+   "AccentCity": "Frankfurt",
+   "Region": 5,
+   "Population": 648034,
+   "Latitude": 50.116667,
+   "Longitude": 8.683333
+ },
+ {
+   "Country": "de",
+   "City": "dortmund",
+   "AccentCity": "Dortmund",
+   "Region": 7,
+   "Population": 594255,
+   "Latitude": 51.516667,
+   "Longitude": 7.45
+ },
+ {
+   "Country": "de",
+   "City": "stuttgart",
+   "AccentCity": "Stuttgart",
+   "Region": 1,
+   "Population": 591688,
+   "Latitude": 48.766667,
+   "Longitude": 9.183333
+ },
+ {
+   "Country": "de",
+   "City": "dusseldorf",
+   "AccentCity": "Düsseldorf",
+   "Region": 7,
+   "Population": 577139,
+   "Latitude": 51.216667,
+   "Longitude": 6.766667
+ },
+ {
+   "Country": "de",
+   "City": "essen",
+   "AccentCity": "Essen",
+   "Region": 7,
+   "Population": 576914,
+   "Latitude": 51.45,
+   "Longitude": 7.016667
+ },
+ {
+   "Country": "de",
+   "City": "bremen",
+   "AccentCity": "Bremen",
+   "Region": 3,
+   "Population": 546429,
+   "Latitude": 53.083333,
+   "Longitude": 8.8
+ },
+ {
+   "Country": "de",
+   "City": "hanover",
+   "AccentCity": "Hanover",
+   "Region": 6,
+   "Population": 519144,
+   "Latitude": 52.366667,
+   "Longitude": 9.716667
+ },
+ {
+   "Country": "de",
+   "City": "duisburg",
+   "AccentCity": "Duisburg",
+   "Region": 7,
+   "Population": 505271,
+   "Latitude": 51.433333,
+   "Longitude": 6.75
+ },
+ {
+   "Country": "de",
+   "City": "nuremberg",
+   "AccentCity": "Nuremberg",
+   "Region": 2,
+   "Population": 497593,
+   "Latitude": 49.447778,
+   "Longitude": 11.068333
+ },
+ {
+   "Country": "de",
+   "City": "leipzig",
+   "AccentCity": "Leipzig",
+   "Region": 13,
+   "Population": 492637,
+   "Latitude": 51.3,
+   "Longitude": 12.333333
+ },
+ {
+   "Country": "de",
+   "City": "dresden",
+   "AccentCity": "Dresden",
+   "Region": 13,
+   "Population": 480801,
+   "Latitude": 51.05,
+   "Longitude": 13.75
+ },
+ {
+   "Country": "de",
+   "City": "bochum",
+   "AccentCity": "Bochum",
+   "Region": 7,
+   "Population": 387061,
+   "Latitude": 51.483333,
+   "Longitude": 7.216667
+ },
+ {
+   "Country": "de",
+   "City": "wuppertal",
+   "AccentCity": "Wuppertal",
+   "Region": 7,
+   "Population": 363240,
+   "Latitude": 51.266667,
+   "Longitude": 7.183333
+ },
+ {
+   "Country": "de",
+   "City": "bielefeld",
+   "AccentCity": "Bielefeld",
+   "Region": 7,
+   "Population": 327198,
+   "Latitude": 52.033333,
+   "Longitude": 8.533333
+ },
+ {
+   "Country": "de",
+   "City": "bonn",
+   "AccentCity": "Bonn",
+   "Region": 7,
+   "Population": 314081,
+   "Latitude": 50.733333,
+   "Longitude": 7.1
+ },
+ {
+   "Country": "de",
+   "City": "mannheim",
+   "AccentCity": "Mannheim",
+   "Region": 1,
+   "Population": 309626,
+   "Latitude": 49.488333,
+   "Longitude": 8.464722
+ },
+ {
+   "Country": "de",
+   "City": "karlsruhe",
+   "AccentCity": "Karlsruhe",
+   "Region": 1,
+   "Population": 284786,
+   "Latitude": 49.004722,
+   "Longitude": 8.385833
+ },
+ {
+   "Country": "de",
+   "City": "munster",
+   "AccentCity": "Münster",
+   "Region": 7,
+   "Population": 272452,
+   "Latitude": 51.966667,
+   "Longitude": 7.633333
+ },
+ {
+   "Country": "de",
+   "City": "wiesbaden",
+   "AccentCity": "Wiesbaden",
+   "Region": 5,
+   "Population": 272337,
+   "Latitude": 50.083333,
+   "Longitude": 8.25
+ },
+ {
+   "Country": "de",
+   "City": "gelsenkirchen",
+   "AccentCity": "Gelsenkirchen",
+   "Region": 7,
+   "Population": 271647,
+   "Latitude": 51.516667,
+   "Longitude": 7.05
+ },
+ {
+   "Country": "de",
+   "City": "monchengladbach",
+   "AccentCity": "Mönchengladbach",
+   "Region": 7,
+   "Population": 264969,
+   "Latitude": 51.2,
+   "Longitude": 6.433333
+ }
+]
