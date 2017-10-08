@@ -17,6 +17,7 @@ class CityLayer extends Component {
     return this.props.selectedCityId === cityId
   }
   
+  
   clickHandler(cityId) {
     this.props.onSelectCity(cityId)
   }
@@ -27,14 +28,13 @@ class CityLayer extends Component {
 
   
   render() {
-      if (this.props.data.length===0) return(<span>Loading ...</span>)
+      if (this.props.data.length===0 ) return(<span>Loading ...</span>)
       return (
         this.props.data.directions.map((data) => {
          return (
-           <g key={data.origin}>
-             { this.isCitySelected(data.id) &&
-               <text x={ this.props.getPX(data) } y={ this.props.getPY(data) }>{data.origin.split(",")[0]}</text>}
-             <circle key={data.orig} onClick={() => this.clickHandler(data.id)} cx={ this.props.getPX(data) } cy={ this.props.getPY(data) } r={ 5 } fill="#000" className="marker" />
+           <g key={data.origin} className={this.isCitySelected(data.id) ? "selected":""}>
+            <text x={ 20 + this.props.getPX(data) } y={ this.props.getPY(data) }>{data.origin.split(",")[0]}</text>
+             <circle key={data.orig} onClick={() => this.clickHandler(data.id)} cx={this.props.getPX(data) } cy={ this.props.getPY(data) } r={ 4 } fill="#ddd" className="marker" />
              
            </g>);
         })

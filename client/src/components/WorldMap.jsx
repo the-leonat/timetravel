@@ -9,7 +9,9 @@ class WorldMap extends Component {
   constructor() {
     super()
     this.state = {
-      selectedCityId: undefined
+      selectedCityId: undefined,
+      transportMode: 0,
+      withTraffic: false
     }
     this.projection = this.projection.bind(this)
     this.selectCityHandler = this.selectCityHandler.bind(this)
@@ -76,6 +78,12 @@ class WorldMap extends Component {
   render() {
     if(this.state.outline === undefined) return (<span>Loading...</span>)
     return (
+      <div><div className="controls">
+        <a onClick={() => { this.setState({transportMode: 0, withTraffic: false}) }}>Car</a>
+        <a onClick={() => { this.setState({transportMode: 0, withTraffic: true}) }}>Car with Traffic</a>
+        <a onClick={() => { this.setState({transportMode: 1}) }}>Public Transport</a>
+
+      </div>
       <svg width={ this.getWidth() } height={ this.getHeight() } viewBox={`0 0 ${this.getWidth()} ${this.getHeight()}`}>
         <g className="countries">
           {
@@ -88,12 +96,14 @@ class WorldMap extends Component {
               />
           }
         </g>
-        <g className="markers">
-          <DirectionLayer getPX={this.getPX} getPY={this.getPY} projection={this.projection} selectedCityId={this.state.selectedCityId} />
-
+        <g>
+          <DirectionLayer getPX={this.getPX} getPY={this.getPY} projection={this.projection} selectedCityId={this.state.selectedCityId} transportMode={this.state.transportMode} withTraffic={this.state.withTraffic} />
+        </g>
+        <g className="cities">
           <CityLayer getPX={this.getPX} getPY={this.getPY} projection={this.projection} onSelectCity={this.selectCityHandler} selectedCityId={this.state.selectedCityId} />
         </g>
       </svg>
+      </div>
     )
   }
 }

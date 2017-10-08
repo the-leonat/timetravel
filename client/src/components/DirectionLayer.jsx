@@ -36,14 +36,20 @@ class DirectionLayer extends Component {
     
       if(this.props.connections === undefined) return(<g></g>)
     
-      let lines = this.props.connections.map((c, index) => {
+    
+      let elems = this.props.connections.map((c, index) => {
         return (
-          <line key={index} x1={c.origin.x} y1={c.origin.y} x2={c.destination.x} y2={c.destination.y}  strokeWidth={ 1 + c.travelTime / 60 / 60 * 5} stroke="rgba(0,0,0,0.2)"></line>
+          //<line key={index} x1={c.origin.x} y1={c.origin.y} x2={c.destination.x} y2={c.destination.y}  strokeWidth={ 1 + c.travelTime / 60 / 60 * 5} stroke="rgba(0,0,0,0.2)"></line>
+          <g key={c.destination.name}>
+
+            <line  x1={c.destination.x} y1={c.destination.y} x2={c.destination.disortedX} y2={c.destination.disortedY} strokeWidth="1" stroke="#ddd"></line>
+            <circle cx={ c.destination.disortedX } cy={ c.destination.disortedY } r={ 5 } fill={c.destination.disortedCloser ? "#f00" : "#000"} />
+          </g>
         )
       })
       return (
         <g>
-          {lines}
+          {elems}
         </g>
       )
   }
