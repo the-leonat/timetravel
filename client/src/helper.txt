@@ -1,0 +1,26 @@
+"origin": "Berlin, Deutschland",
+"lat": 52.516667,
+"long": 13.4,
+"population": 3398362,
+"destinations": [
+  {
+    "destination": "Hamburg, Deutschland",
+    "directions": [
+      {
+        "modeIndex": 1,
+        "travelTime": 6240,
+        "travelDistance": 288324,
+        "departureIndex": 0,
+        "hour": 10,
+      },
+      {
+        "modeIndex": 0,
+        "travelTime": 10877,
+        "travelDistance": 288832,
+        "departureIndex": 0,
+        "hour": 10,
+        "duration_in_traffic": 11126
+      }
+    ]
+  }
+]

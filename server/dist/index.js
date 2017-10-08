@@ -19,11 +19,12 @@ var _jsonfile2 = _interopRequireDefault(_jsonfile);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var apiKey = "AIzaSyD5itzQ3zqnfTO9qrLQRfvGS3slIHFrokU";
+var apiKey2 = "AIzaSyASrDgBiQJiZYiBA9a4Cur2jQR_flJW-uk";
 var cityFile = "cities.json";
 var directionFile = "directions.json";
 
 //set api key
-_googleDistanceMatrix2.default.key(apiKey);
+_googleDistanceMatrix2.default.key(apiKey2);
 _googleDistanceMatrix2.default.language("de");
 
 //set request time
@@ -37,6 +38,8 @@ var d2 = new Date();
 d2.setHours(0, 0, 0, 0);
 
 var requestList = [];
+
+var timing = 0;
 
 var departureTimes = [d1];
 
@@ -80,9 +83,9 @@ _fs2.default.readFile("./" + cityFile, 'utf8', function (err, data) {
 
       departureTimes.forEach(function (time, timeIndex) {
         transportModes.forEach(function (mode, modeIndex) {
-
           requestList.push(requestDistance(origin.City, destination.City, time.getTime() / 1000, mode).then(function (resp) {
             var e = resp.rows[0].elements[0];
+            console.log(e);
 
             cityToCities.origin = resp.origin_addresses[0];
             cityToCity.destination = resp.destination_addresses[0];
@@ -126,20 +129,26 @@ _fs2.default.readFile("./" + cityFile, 'utf8', function (err, data) {
 });
 
 function requestDistance(origin, destination, departureTime, transportMode) {
+  timing += 1;
   return new Promise(function (resolve, reject) {
-    _googleDistanceMatrix2.default.departure_time(departureTime);
-    _googleDistanceMatrix2.default.mode(transportMode);
+    setTimeout(function () {
+      _googleDistanceMatrix2.default.departure_time(departureTime);
+      _googleDistanceMatrix2.default.mode(transportMode);
 
-    console.log("TRY: " + origin + " -> " + destination);
+      console.log("TRY: " + origin + " -> " + destination);
 
-    var y = _googleDistanceMatrix2.default.matrix([origin], [destination], function (err, response) {
-      if (err || response.status != "OK") {
-        console.log("FAILED: " + origin + " -> " + destination);
-        reject(err);
-        return;
-      } else {
-        resolve(response);
-      }
-    });
+      _googleDistanceMatrix2.default.matrix([origin], [destination], function (err, response) {
+        if (err || response.status != "OK") {
+          console.log("ERR: " + origin + " -> " + destination);
+          console.log(response);
+          reject(err);
+          return;
+        } else {
+          console.log("SUC: " + origin + " -> " + destination);
+
+          resolve(response);
+        }
+      });
+    }, timing * (1000 / 40));
   });
 }

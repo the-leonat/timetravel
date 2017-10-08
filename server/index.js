@@ -4,11 +4,12 @@ import distance from "google-distance-matrix"
 import jsonfile from "jsonfile"
 
 let apiKey = "AIzaSyD5itzQ3zqnfTO9qrLQRfvGS3slIHFrokU"
+let apiKey2 = "AIzaSyASrDgBiQJiZYiBA9a4Cur2jQR_flJW-uk"
 let cityFile = "cities.json"
 let directionFile = "directions.json"
 
 //set api key
-distance.key(apiKey)
+distance.key(apiKey2)
 distance.language("de")
 
 //set request time
@@ -22,6 +23,8 @@ let d2 = new Date()
 d2.setHours(0,0,0,0)
 
 let requestList = []
+
+let timing = 0;
 
 
 let departureTimes = [d1]
@@ -44,67 +47,66 @@ fs.readFile("./" + cityFile, 'utf8', (err,data) => {
   //d = [d[0], d[1]]
   
   d.forEach((origin) => {
-    let filteredDestinations = d.filter((refCity, index) => {
-      return origin.City !== refCity.City 
-    })
-
-    let cityToCities = {
-      //overwritten later by api
-      origin: origin.City,
-      lat: origin.Latitude,
-      long: origin.Longitude,
-      population: origin.Population,
-      destinations: []
-    }
-    directions.push(cityToCities)
-
-    filteredDestinations.forEach((destination) => {
-      
-      let cityToCity = {
-        //overwritten later by api 
-        destination: destination.City,
-        directions: []
-      }
-      cityToCities.destinations.push(cityToCity)
-      
-      departureTimes.forEach((time, timeIndex) => {
-        transportModes.forEach((mode, modeIndex) => {
-          
-          
-          requestList.push(
-            requestDistance(
-              origin.City, 
-              destination.City, 
-              time.getTime() / 1000, 
-              mode
-            ).then((resp) => {
-                let e = resp.rows[0].elements[0]
-
-                cityToCities.origin = resp.origin_addresses[0]
-                cityToCity.destination = resp.destination_addresses[0]
-
-                let directionObject = {
-                  modeIndex: modeIndex,
-                  travelTime: e.duration.value,
-                  travelDistance: e.distance.value,
-                  departureIndex: timeIndex,
-                  hour: time.getHours(),
-                  apiResponse: resp
-                }
-
-                if(e.duration_in_traffic !== undefined) {
-                  directionObject["duration_in_traffic"] = e.duration_in_traffic.value
-                }
-
-                cityToCity.directions.push(directionObject) 
-            }, (err) => {
-              console.error("rejected" )
-              console.error(err);
-            }) 
-          )
-        })  
+      let filteredDestinations = d.filter((refCity, index) => {
+        return origin.City !== refCity.City 
       })
-    })
+
+      let cityToCities = {
+        //overwritten later by api
+        origin: origin.City,
+        lat: origin.Latitude,
+        long: origin.Longitude,
+        population: origin.Population,
+        destinations: []
+      }
+      directions.push(cityToCities)
+
+      filteredDestinations.forEach((destination) => {
+
+          let cityToCity = {
+            //overwritten later by api 
+            destination: destination.City,
+            directions: []
+          }
+          cityToCities.destinations.push(cityToCity)
+
+          departureTimes.forEach((time, timeIndex) => {
+            transportModes.forEach((mode, modeIndex) => {
+                requestList.push(
+                  requestDistance(
+                    origin.City, 
+                    destination.City, 
+                    time.getTime() / 1000, 
+                    mode
+                  ).then((resp) => {
+                      let e = resp.rows[0].elements[0]
+
+                      cityToCities.origin = resp.origin_addresses[0]
+                      cityToCity.destination = resp.destination_addresses[0]
+
+                      let directionObject = {
+                        modeIndex: modeIndex,
+                        travelTime: e.duration.value,
+                        travelDistance: e.distance.value,
+                        departureIndex: timeIndex,
+                        hour: time.getHours(),
+                        apiResponse: resp
+                      }
+
+                      if(e.duration_in_traffic !== undefined) {
+                        directionObject["duration_in_traffic"] = e.duration_in_traffic.value
+                      }
+
+                      cityToCity.directions.push(directionObject) 
+                  }, (err) => {
+                    console.error("rejected" )
+                    console.error(err);
+                  }) 
+                )
+
+            })  
+          })
+      })
   })
   
   
@@ -125,22 +127,28 @@ fs.readFile("./" + cityFile, 'utf8', (err,data) => {
   
 
 function requestDistance(origin, destination, departureTime, transportMode) {
+  timing += 1
   return new Promise((resolve, reject) => {
-    distance.departure_time(departureTime)
-    distance.mode(transportMode)
-    
-    console.log("TRY: " + origin + " -> " + destination)
+    setTimeout(() => {
+      distance.departure_time(departureTime)
+      distance.mode(transportMode)
+
+      console.log("TRY: " + origin + " -> " + destination)
 
 
-    let y = distance.matrix([origin], [destination], function (err, response) {
-      if (err || response.status != "OK") {
-        console.log("FAILED: " + origin + " -> " + destination)
-        reject(err)
-        return
-      } else {
-        resolve(response)
-      }
-    })
+      distance.matrix([origin], [destination], function (err, response) {
+        if (err || response.status != "OK") {
+          console.log("ERR: " + origin + " -> " + destination)
+          console.log(response)
+          reject(err)
+          return
+        } else {
+          console.log("SUC: " + origin + " -> " + destination)
+
+          resolve(response)
+        }
+      })
+    }, timing * (1000 / 40))
   })
 }
 

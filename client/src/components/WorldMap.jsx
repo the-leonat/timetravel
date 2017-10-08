@@ -3,14 +3,19 @@
 import React, { Component } from "react"
 import { geoMercator, geoPath, geoCircle } from "d3-geo"
 import CityLayer from "components/CityLayer.jsx"
+import DirectionLayer from "components/DirectionLayer.jsx"
 
 class WorldMap extends Component {
   constructor() {
     super()
     this.state = {
-      
+      selectedCityId: undefined
     }
-    this.projection=this.projection.bind(this)
+    this.projection = this.projection.bind(this)
+    this.selectCityHandler = this.selectCityHandler.bind(this)
+    this.getPX = this.getPX.bind(this)
+    this.getPY = this.getPY.bind(this)
+
   }
   
   getWidth() {
@@ -19,6 +24,14 @@ class WorldMap extends Component {
   
   getHeight() {
     return window.innerHeight
+  }
+  
+  getPX(data) {
+    return this.projection()([data.long, data.lat])[0]
+  }
+  
+  getPY(data) {
+    return this.projection()([data.long, data.lat])[1]
   }
   
   projection() {
@@ -32,6 +45,14 @@ class WorldMap extends Component {
     let zoom  = this.getHeight() * 25 / Math.abs((b[1][1] - b[0][1]))
 
     return geoMercator().center([cLong, cLat]).scale(zoom).translate([this.getWidth() / 2, this.getHeight() / 2])
+  }
+  
+  selectCityHandler(cityId) {
+    if(typeof cityId !== "number") throw "cityId not type int"
+    
+    this.setState({
+      selectedCityId: cityId
+    })
   }
   
   componentDidMount() {
@@ -68,7 +89,9 @@ class WorldMap extends Component {
           }
         </g>
         <g className="markers">
-            <CityLayer projection={this.projection} />
+          <DirectionLayer getPX={this.getPX} getPY={this.getPY} projection={this.projection} selectedCityId={this.state.selectedCityId} />
+
+          <CityLayer getPX={this.getPX} getPY={this.getPY} projection={this.projection} onSelectCity={this.selectCityHandler} selectedCityId={this.state.selectedCityId} />
         </g>
       </svg>
     )
